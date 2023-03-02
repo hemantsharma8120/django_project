@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <title>Wow Caring</title>
+    <style>
+      body{
+        background: url(
+          https://tse2.mm.bing.net/th?id=OIP.qgkDPbpBoLDV-FqrGY-yZQHaFS&pid=Api&P=0
+        );
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .bg{
+        background: #ff1744!important;
+        
+      }
+      .list-group-item.active{
+        background: #f50057!important;
+        background: #d500f9!important;
+      }
+    </style>
+  </head>
+  <body>
+     {% include 'navbar.html'%}
+
+     <!---Start main Coding-->
+     <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <!--for category Display-->
+                <!-- paste list-group-->
+
+                <div class="list-group-mt-3">
+                    <a href="/" class="list-group-item list-group-item-action active" aria-current="true">
+                      All Product
+                    </a>
+                   {%for c in cats %}
+                   <a href="/category/{{c.pk}}" class="list-group-item list-group-item-action active" aria-current="true">
+                    {{c.title}}
+                  </a>
+                  {% endfor %}
+                  </div>
+                <!-- End list-group-->
+            </div>
+
+            <div class="col-md-10">
+                <div class="row-mt-3">
+                    <div class="col-md-12">
+                        <div class="card-columns">
+                            {% for i in images%}
+                            <div class="card">
+                                <img src="/media/{{i.image}}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                  <h5 class="card-title">{{i.title}}</h5>
+                                  <p class="card-text">{{i.discription}}</p>
+                                  <a href="#" class="btn btn-primary" onclick="showModalwithImage('{{i.image}}')">Card</a>
+                                </div>
+                              </div>
+                              {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+
+
+
+     <!-- End Main Coding-->
+
+
+     <!-- javascripts-->
+
+     <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="image-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <img src="#!" id="image-show" class="img-fluid" alt="">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+       </div>
+    </div>
+  </div>
+</div>
+     <!-- javascripts-->
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    -->
+
+
+
+    <script>
+      function showModalwithImage(imageUrl)
+      {
+        $('#image-modal').modal('show')
+        $('#image-show').attr('src',`/media/${(imageUrl)}`)
+      }
+    </script>
+  </body>
+</html>
